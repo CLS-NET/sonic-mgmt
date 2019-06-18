@@ -67,7 +67,7 @@
   vars:
     dst_port: "default('')"
     src_port: "default('')"
-  when: testbed_type in ['t1']
+  when: testbed_type in ['t1','t1-slx']
 
 - block:
   - fail: msg="minigraph_portchannel_interfaces is not defined or zero length"
