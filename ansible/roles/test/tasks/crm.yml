@@ -8,7 +8,7 @@
 
    - set_fact: crm_intf="{{minigraph_interfaces[0].attachto}}"
                crm_intf1="{{minigraph_interfaces[2].attachto}}"
-     when: testbed_type == "t1"
+     when: testbed_type == "t1" or testbed_type == "t1-slx"
 
    - set_fact: crm_intf="{{minigraph_portchannel_interfaces[0].attachto}}"
                crm_intf1="{{minigraph_portchannel_interfaces[2].attachto}}"
