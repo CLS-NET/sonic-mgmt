@@ -238,13 +238,8 @@ class AclTest(BaseTest):
         exp_pkt = tcp_exp_pkt0.copy()
         pkt['TCP'].sport = 0x123A
         exp_pkt['TCP'].sport = 0x123A
-<<<<<<< HEAD
-
-        self.runAclTestCase(test_name, pkt, src_ports, exp_pkt, dst_ports, True)
-=======
         self.runAclTestCase(test_name, pkt, src_ports, exp_pkt, dst_ports, True)
 
->>>>>>> 161ce1001c8dfd75d9dcb3303041169a8464a44b
         test_name = '# Test #8 - destination port range match - forwarded' + direction
         pkt = tcp_pkt0.copy()
         exp_pkt = tcp_exp_pkt0.copy()

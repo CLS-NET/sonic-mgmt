@@ -467,13 +467,8 @@ class ReloadTest(BaseTest):
     def generate_from_t1(self):
         self.from_t1 = []
 
-<<<<<<< HEAD
-        for counter, host_port in enumerate(self.vlan_host_map):
-        # for each server host create a packet destinating server IP
-=======
         # for each server host create a packet destinating server IP
         for counter, host_port in enumerate(self.vlan_host_map):
->>>>>>> 161ce1001c8dfd75d9dcb3303041169a8464a44b
             src_addr = self.random_ip(self.default_ip_range)
             src_port = self.random_port(self.portchannel_ports)
 
