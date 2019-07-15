@@ -97,7 +97,7 @@
 
   always:
     - name: Remove {{ portchannel_ip }} from {{ tmp_portchannel }}
-      shell: config interface {{ tmp_portchannel }} ip remove {{ tmp_portchannel }} {{ portchannel_ip }}/31
+      shell: config interface {{ tmp_portchannel }} ip remove {{ portchannel_ip }}/31
       become: yes
       when: add_tmp_portchannel_ip
 
