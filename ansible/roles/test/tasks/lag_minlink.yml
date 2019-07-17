@@ -44,7 +44,7 @@
 
   ### always bring back port in case test error and left testbed in unknow stage
   always:
-    - name: Bring up neighbor interface {{ neighbor_interface }} on {{ peer_host }}   # added by Vincent Meng
+    - name: Bring up neighbor interface {{ neighbor_interface }} on {{ peer_host }}
       become: true
       shell: ip link set {{ neighbor_interface }} up
       delegate_to: "{{peer_host}}"
