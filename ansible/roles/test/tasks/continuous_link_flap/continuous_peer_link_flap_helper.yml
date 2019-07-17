@@ -31,7 +31,8 @@
 
     - name: Shutting down neighbor interface {{neighbor_interface}} on {{peer_host}}
       become: true
-      shell: ip link set {{port_alias_map[neighbor_interface]}} down
+      #shell: ip link set {{port_alias_map[neighbor_interface]}} down
+      shell: ip link set {{ neighbor_interface }} down
       delegate_to: "{{peer_host}}"
       when: peer_type == "FanoutLeafSonic"
 
@@ -68,6 +69,7 @@
 
     - name: Bring up neighbor interface {{neighbor_interface}} on {{peer_host}}
       become: true
-      shell: ip link set {{port_alias_map[neighbor_interface]}} up
+      #shell: ip link set {{port_alias_map[neighbor_interface]}} up
+      shell: ip link set {{ neighbor_interface }} up
       delegate_to: "{{peer_host}}"
       when: peer_type == "FanoutLeafSonic"
