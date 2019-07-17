@@ -51,10 +51,10 @@
         v4_nei: "{{ v4_intf_nei }}"
 
     - name: startup Ethernet0
-      command: "config interface startup Ethernet0"
+      command: "config interface Ethernet0 startup"
 
     - name: add an ip entry for Ethernet0
-      command: "config interface ip add Ethernet0 {{ v4_intf_ip }}"
+      command: "config interface Ethernet0 ip add {{ v4_intf_ip }}"
 
     - name: add neighbor of Ethernet0
       command: "/sbin/ip neigh add {{ v4_intf_nei }} lladdr {{ v4_mac1 }} dev Ethernet0"
@@ -111,10 +111,10 @@
         v6_nei: "{{ v6_intf_nei }}"
 
     - name: startup Ethernet0
-      command: "config interface startup Ethernet0"
+      command: "config interface Ethernet0 startup"
 
     - name: add an ipv6 entry for Ethernet0 if no v6 neighbor was found
-      command: "config interface ip add Ethernet0 {{ v6_intf_ip }}"
+      command: "config interface Ethernet0 ip add {{ v6_intf_ip }}"
 
     - name: add an ipv6 neighbor for Ethernet0 if no v6 neighbor was found
       command: "/sbin/ip neigh add {{ v6_intf_nei }} lladdr {{ v6_mac1 }} dev Ethernet0"
