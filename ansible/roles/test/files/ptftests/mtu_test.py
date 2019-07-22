@@ -103,7 +103,7 @@ class MtuTest(BaseTest):
         @summary: Check unicast IP forwarding in DUT works for MAX MTU.
         '''
         ip_src = "10.0.0.1"
-        ip_dst = "10.0.0.63"
+        ip_dst = "10.0.0.61"
         src_mac = self.dataplane.get_mac(0, 0)
 
         pkt = simple_ip_packet(pktlen=self.pktlen,
@@ -127,7 +127,7 @@ class MtuTest(BaseTest):
         logging.info("Sending packet from port " + str(src_port) + " to " + ip_dst)
         dst_port_list = []
         if self.testbed_type == 't1' or self.testbed_type == 't1-lag' or self.testbed_type == 't1-slx':
-            dst_port_list = [31]
+            dst_port_list = [30]
         elif self.testbed_type == 't1-64-lag':
             dst_port_list = [58]
 
