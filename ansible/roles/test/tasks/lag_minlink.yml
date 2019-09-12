@@ -5,13 +5,20 @@
 ### Port channel interface is up after peer port is back
 
 - block:
-    - name: Shut down neighbor interface {{ neighbor_interface }} on {{ peer_device }} ({{ peer_host }})
+    - name: Shut down neighbor interface {{ neighbor_interface }} on {{ peer_device }}
+      become: true
+      shell: ip link set {{ neighbor_interface }} down
+      delegate_to: "{{peer_host}}"
+      when: ((peer_hwsku | lower) | search("arista")) == False
+
+    - name: Shut down neighbor interface {{ neighbor_interface }} on {{ peer_device }}
       action: apswitch template=neighbor_interface_shut_single.j2
       args:
         host: "{{peer_host}}"
         login: "{{switch_login[hwsku_map[peer_hwsku]]}}"
       connection: switch
-    
+      when: ((peer_hwsku | lower) | search("arista")) == True
+
     - name: Set delay
       set_fact:
         delay: 5
@@ -56,12 +63,19 @@
 
   ### always bring back port in case test error and left testbed in unknow stage
   always:
-    - name: Bring up neighbor interface {{ neighbor_interface }} on {{ peer_device }} ({{ peer_host }})
+    - name: Bring up neighbor interface {{ neighbor_interface }} on {{ peer_host }}
+      become: true
+      shell: ip link set {{ neighbor_interface }} up
+      delegate_to: "{{peer_host}}"
+      when: ((peer_hwsku | lower) | search("arista")) == False
+
+    - name: Bring up neighbor interface {{ neighbor_interface }} on {{ peer_host }}
       action: apswitch template=neighbor_interface_no_shut_single.j2
       args:
         host: "{{peer_host}}"
         login: "{{switch_login[hwsku_map[peer_hwsku]]}}"
       connection: switch
+      when: ((peer_hwsku | lower) | search("arista")) == True
     
     - name: "Verify PortChannel interfaces are up correctly"
       shell: bash -c "teamdctl {{ po }} state dump" | python -c "import sys, json; print json.load(sys.stdin)['ports']['{{ item }}']['link']['up']"
