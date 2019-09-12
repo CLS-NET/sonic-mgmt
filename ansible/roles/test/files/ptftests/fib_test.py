@@ -98,6 +98,8 @@ class FibTest(BaseTest):
         # Provide the list of all UP interfaces with index in sequence order starting from 0
         if self.test_params['testbed_type'] == 't1' or self.test_params['testbed_type'] == 't1-lag':
             self.src_ports = range(0, 32)
+        if self.test_params['testbed_type'] == 't1-slx':
+            self.src_ports = range(0, 31)
         if self.test_params['testbed_type'] == 't1-64-lag':
             self.src_ports = [0, 1, 4, 5, 16, 17, 20, 21, 34, 36, 37, 38, 39, 42, 44, 45, 46, 47, 50, 52, 53, 54, 55, 58, 60, 61, 62, 63]
         if self.test_params['testbed_type'] == 't0':
@@ -110,6 +112,10 @@ class FibTest(BaseTest):
             self.src_ports = range(0, 2) + range(4, 18) + range(20, 33) + range(36, 43) + range(48, 49) + range(52, 59)
         if self.test_params['testbed_type'] == 't0-116':
             self.src_ports = range(0, 120)
+        if self.test_params['testbed_type'] == 't0-slx':
+            self.src_ports = range(1, 25) + range(27, 31)
+        if self.test_params['testbed_type'] == 't0-e1031':
+            self.src_ports = range(3, 6, 2) + range(28, 32)
     #---------------------------------------------------------------------
 
     def check_ip_range(self, ipv4=True):

@@ -93,6 +93,8 @@ class DecapPacketTest(BaseTest):
             self.src_ports = range(0, 32)
         if self.test_params['testbed_type'] == 't1-64-lag':
             self.src_ports = [0, 1, 4, 5, 16, 17, 20, 21, 34, 36, 37, 38, 39, 42, 44, 45, 46, 47, 50, 52, 53, 54, 55, 58, 60, 61, 62, 63]
+        if self.test_params['testbed_type'] == 't1-slx':
+            self.src_ports = range(0, 31)
         if self.test_params['testbed_type'] == 't0':
             self.src_ports = range(1, 25) + range(28, 32)
         if self.test_params['testbed_type'] == 't0-64':
@@ -101,6 +103,10 @@ class DecapPacketTest(BaseTest):
             self.src_ports = range(0, 24) + range(32, 120)
         if self.test_params['testbed_type'] == 't0-52':
             self.src_ports = range(0, 52)
+        if self.test_params['testbed_type'] == 't0-slx':
+            self.src_ports = range(1, 25) + range(27, 31)
+        if self.test_params['testbed_type'] == 't0-e1031':
+            self.src_ports = range(3, 6, 2) + range(28, 32)
 
         # which type of tunneled trafic to test (IPv4 in IPv4, IPv6 in IPv4, IPv6 in IPv4, IPv6 in IPv6)
         self.test_outer_ipv4 = self.test_params.get('outer_ipv4', True)
