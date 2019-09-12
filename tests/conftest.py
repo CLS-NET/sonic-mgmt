@@ -3,6 +3,7 @@ import os
 
 import pytest
 import csv
+import yaml
 import ipaddr as ipaddress
 
 from ansible_host import AnsibleHost

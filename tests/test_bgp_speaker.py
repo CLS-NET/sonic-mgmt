@@ -1,3 +1,4 @@
+import pytest
 from netaddr import *
 import sys
 import time
