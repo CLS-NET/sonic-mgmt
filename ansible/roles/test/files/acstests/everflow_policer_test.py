@@ -6,6 +6,7 @@ Usage:          Examples of how to use:
 '''
 
 
+import time
 import ptf
 import ptf.packet as scapy
 import ptf.dataplane as dataplane
@@ -16,7 +17,7 @@ from ptf.mask import Mask
 class EverflowPolicerTest(BaseTest):
 
     GRE_PROTOCOL_NUMBER = 47
-    NUM_OF_TOTAL_PACKETS = 200
+    NUM_OF_TOTAL_PACKETS = 500
 
 
     def __init__(self):
@@ -100,7 +101,16 @@ class EverflowPolicerTest(BaseTest):
         """
         @summary: Send traffic & check how many mirrored packets are received
         @return: count: number of mirrored packets received
+
+        Note:
+        Mellanox crafts the GRE packets with extra information:
+        That is: 22 bytes extra information after the GRE header
         """
+        payload = self.base_pkt
+        if self.asic_type in ["mellanox"]:
+            import binascii
+            payload = binascii.unhexlify("0"*44) + str(payload) # Add the padding
+
         exp_pkt = testutils.simple_gre_packet(
                 eth_src = self.router_mac,
                 ip_src = self.session_src_ip,
@@ -109,14 +119,20 @@ class EverflowPolicerTest(BaseTest):
                 ip_id = 0,
                 #ip_flags = 0x10, # need to upgrade ptf version to support it
                 ip_ttl = self.session_ttl,
-                inner_frame = self.base_pkt)
+                inner_frame = payload)
 
-        exp_pkt['GRE'].proto = 0x88be
+        if self.asic_type in ["mellanox"]:
+            exp_pkt['GRE'].proto = 0x8949 # Mellanox specific
+        else:
+            exp_pkt['GRE'].proto = 0x88be
 
         masked_exp_pkt = Mask(exp_pkt)
         masked_exp_pkt.set_do_not_care_scapy(scapy.Ether, "dst")
         masked_exp_pkt.set_do_not_care_scapy(scapy.IP, "flags")
         masked_exp_pkt.set_do_not_care_scapy(scapy.IP, "chksum")
+
+        if self.asic_type in ["mellanox"]:
+            masked_exp_pkt.set_do_not_care(304, 176) # Mask the Mellanox specific inner header
 
         self.dataplane.flush()
 
@@ -141,6 +157,10 @@ class EverflowPolicerTest(BaseTest):
         # Send traffic and verify the original traffic is not rate limited
         count = self.checkOriginalFlow()
         assert count == self.NUM_OF_TOTAL_PACKETS
+
+        # Sleep for t=CBS/CIR=(100packets)/(100packets/s)=1s to refill CBS capacity after checkOriginalFlow()
+        # otherwise we can have first mirrored packet dropped by policer in checkMirroredFlow()
+        time.sleep(1)
 
         testutils.add_filter(self.greFilter)
 

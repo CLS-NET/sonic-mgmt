@@ -23,6 +23,11 @@
     - name: Preboot-list initialization
       set_fact: preboot_list={% if preboot_list is not defined %}[None]{% else %}{{ preboot_list }}{% endif %}
 
+    - name: Validate preboot list
+      include: roles/test/tasks/advanced_reboot/validate_preboot_list.yml
+      with_items: "{{ preboot_list }}"
+      when: item and ':' in item
+
     - name: Preboot files initialization
       set_fact: preboot_files={% if preboot_files is not defined %}None{% else %}{{ preboot_files }}{% endif %}
 
@@ -46,21 +51,6 @@
     - name: Copy tests to the PTF container
       copy: src=roles/test/files/ptftests dest=/root
       delegate_to: "{{ ptf_host }}"
-
-    - name: Copy arp responder to the PTF container
-      copy: src=roles/test/files/helpers/arp_responder.py dest=/opt
-      delegate_to: "{{ ptf_host }}"
-
-    - name: Copy arp responder supervisor configuration to the PTF container
-      template: src=arp_responder.conf.j2 dest=/etc/supervisor/conf.d/arp_responder.conf
-      vars:
-        - arp_responder_args: '-e'
-      delegate_to: "{{ ptf_host }}"
-
-    - name: Update supervisor configuration
-      include: "roles/test/tasks/common_tasks/update_supervisor.yml"
-      vars:
-        supervisor_host: "{{ ptf_host }}"
 
     - name: Remove old keys
       file:
