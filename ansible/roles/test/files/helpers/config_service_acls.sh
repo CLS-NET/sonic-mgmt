@@ -81,5 +81,6 @@ sleep 60
 # Delete the test ACL config file
 rm -rf /tmp/testacl.json
 
-# IMPORTANT! Delete the ACLs we just added in order to restore connectivity
+# IMPORTANT! Restore original service ACLs, so that we restore SSH connectivity
+
 acl-loader delete

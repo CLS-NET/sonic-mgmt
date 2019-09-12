@@ -4,7 +4,7 @@
     when: (testbed_type is not defined)
 
   - fail: msg="Invalid testbed_type value '{{testbed_type}}'"
-    when: testbed_type not in ['t0']
+    when: testbed_type not in ['t0', 't0-slx', 't0-e1031']
 
   # Initialize ports info
 
@@ -272,7 +272,7 @@
       delegate_to: "{{ ptf_host }}"
 
     - name: Remove portmap
-      file: path=/root/={{ ptf_portmap }} state=absent
+      file: path=/root/{{ ptf_portmap | basename }} state=absent
       delegate_to: "{{ ptf_host }}"
 
     - name: Stop PFC generator on fanout switch
