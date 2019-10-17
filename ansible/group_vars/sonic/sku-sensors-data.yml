@@ -1376,7 +1376,8 @@ sensors_checks:
         side: left
         skip_list:
         - ym2651-i2c-11-5b
-   Seastone-DX010:
+
+  Seastone-DX010:
     alarms:
       fan:
       - dps460-i2c-10-5a/fan1/fan1_alarm
