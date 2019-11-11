@@ -41,6 +41,13 @@ cel-e1031-01 ansible_host=10.250.0.100
 hwsku="Celestica-E1031-T48S4"
 iface_speed='1000'
 
+[sonic_sil]
+cel-silverstone-01 ansible_host=10.250.0.100
+
+[sonic_sil:vars]
+hwsku="Silverstone"
+iface_speed='400000'
+
 [sonic:children]
 sonic_sn2700_40
 sonic_s6000
@@ -48,6 +55,7 @@ sonic_s6100
 sonic_a7260
 sonic_slx
 sonic_e1031
+sonic_sil
 
 [ptf]
 ptf_ptf1    ansible_host=10.255.0.188 ansible_ssh_user=root ansible_ssh_pass=root
@@ -68,4 +76,5 @@ str-7260-10       ansible_host=10.251.0.13
 str-7260-11       ansible_host=10.251.0.234
 str-msn2700-02    ansible_host=10.251.0.235 os=sonic
 seastone-fanout ansible_host=10.251.0.235 os=sonic ansible_ssh_user=admin ansible_ssh_pass=password
-e1031-fanout ansible_host=10.250.0.235 os=sonic ansible_ssh_user=admin ansible_ssh_pass=password 
+e1031-fanout ansible_host=10.250.0.235 os=sonic ansible_ssh_user=admin ansible_ssh_pass=password
+silverstone-fanout ansible_host=10.250.0.235 os=sonic ansible_ssh_user=admin ansible_ssh_pass=password 
