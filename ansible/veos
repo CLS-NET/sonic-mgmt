@@ -92,7 +92,6 @@ VM0427 ansible_host=10.251.0.37
 VM0428 ansible_host=10.251.0.38
 VM0429 ansible_host=10.251.0.39
 VM0430 ansible_host=10.251.0.40
-VM0431 ansible_host=10.251.0.41
 
 [eos:children]
 vms_1
