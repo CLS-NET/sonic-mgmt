@@ -42,10 +42,10 @@
       <DeviceInterfaceLink BandWidth="400000" EndDevice="silverstone-fanout" EndPort="Ethernet96" StartDevice="cel-silverstone-01" StartPort="Ethernet96"/>
       <DeviceInterfaceLink BandWidth="400000" EndDevice="silverstone-fanout" EndPort="Ethernet100" StartDevice="cel-silverstone-01" StartPort="Ethernet100"/>
       <DeviceInterfaceLink BandWidth="400000" EndDevice="silverstone-fanout" EndPort="Ethernet104" StartDevice="cel-silverstone-01" StartPort="Ethernet104"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="silverstone-fanout" EndPort="Ethernet108" StartDevice="cel-silverstone-01" StartPort="Ethernet108"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="silverstone-fanout" EndPort="Ethernet112" StartDevice="cel-silverstone-01" StartPort="Ethernet112"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="silverstone-fanout" EndPort="Ethernet116" StartDevice="cel-silverstone-01" StartPort="Ethernet116"/>
-      <DeviceInterfaceLink BandWidth="100000" EndDevice="silverstone-fanout" EndPort="Ethernet120" StartDevice="cel-silverstone-01" StartPort="Ethernet120"/>
+      <DeviceInterfaceLink BandWidth="400000" EndDevice="silverstone-fanout" EndPort="Ethernet108" StartDevice="cel-silverstone-01" StartPort="Ethernet108"/>
+      <DeviceInterfaceLink BandWidth="400000" EndDevice="silverstone-fanout" EndPort="Ethernet112" StartDevice="cel-silverstone-01" StartPort="Ethernet112"/>
+      <DeviceInterfaceLink BandWidth="400000" EndDevice="silverstone-fanout" EndPort="Ethernet116" StartDevice="cel-silverstone-01" StartPort="Ethernet116"/>
+      <DeviceInterfaceLink BandWidth="400000" EndDevice="silverstone-fanout" EndPort="Ethernet120" StartDevice="cel-silverstone-01" StartPort="Ethernet120"/>
       <DeviceInterfaceLink BandWidth="100000" EndDevice="seastone-fanout" EndPort="Ethernet0" StartDevice="cel-seastone-01" StartPort="Ethernet0"/>
       <DeviceInterfaceLink BandWidth="100000" EndDevice="seastone-fanout" EndPort="Ethernet4" StartDevice="cel-seastone-01" StartPort="Ethernet4"/>
       <DeviceInterfaceLink BandWidth="100000" EndDevice="seastone-fanout" EndPort="Ethernet8" StartDevice="cel-seastone-01" StartPort="Ethernet8"/>

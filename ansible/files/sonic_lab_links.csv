@@ -26,10 +26,10 @@ cel-silverstone-01,Ethernet92,silverstone-fanout,Ethernet92,400000,123,Access
 cel-silverstone-01,Ethernet96,silverstone-fanout,Ethernet96,400000,124,Access
 cel-silverstone-01,Ethernet100,silverstone-fanout,Ethernet100,400000,125,Access
 cel-silverstone-01,Ethernet104,silverstone-fanout,Ethernet104,400000,126,Access
-cel-silverstone-01,Ethernet108,silverstone-fanout,Ethernet108,100000,127,Access
-cel-silverstone-01,Ethernet112,silverstone-fanout,Ethernet112,100000,128,Access
-cel-silverstone-01,Ethernet116,silverstone-fanout,Ethernet116,100000,129,Access
-cel-silverstone-01,Ethernet120,silverstone-fanout,Ethernet120,100000,130,Access
+cel-silverstone-01,Ethernet108,silverstone-fanout,Ethernet108,400000,127,Access
+cel-silverstone-01,Ethernet112,silverstone-fanout,Ethernet112,400000,128,Access
+cel-silverstone-01,Ethernet116,silverstone-fanout,Ethernet116,400000,129,Access
+cel-silverstone-01,Ethernet120,silverstone-fanout,Ethernet120,400000,130,Access
 cel-seastone-01,Ethernet0,seastone-fanout,Ethernet0,100000,100,Access
 cel-seastone-01,Ethernet4,seastone-fanout,Ethernet4,100000,101,Access
 cel-seastone-01,Ethernet8,seastone-fanout,Ethernet8,100000,102,Access
