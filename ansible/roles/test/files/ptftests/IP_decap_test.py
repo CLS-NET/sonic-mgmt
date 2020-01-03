@@ -93,7 +93,7 @@ class DecapPacketTest(BaseTest):
             self.src_ports = range(0, 32)
         if self.test_params['testbed_type'] == 't1-64-lag':
             self.src_ports = [0, 1, 4, 5, 16, 17, 20, 21, 34, 36, 37, 38, 39, 42, 44, 45, 46, 47, 50, 52, 53, 54, 55, 58, 60, 61, 62, 63]
-        if self.test_params['testbed_type'] == 't1-slx':
+        if self.test_params['testbed_type'] == 't1-slx' or self.test_params['testbed_type'] == 't1-sil':
             self.src_ports = range(0, 31)
         if self.test_params['testbed_type'] == 't0':
             self.src_ports = range(1, 25) + range(28, 32)

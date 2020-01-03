@@ -135,7 +135,7 @@ configuration_properties:
     nhipv6: FC0A::C9
   spine:
     swrole: spine
-    podset_number: 8
+    podset_number: 200
     tor_number: 16
     tor_subnet_number: 2
     leaf_asn_start: 62001
