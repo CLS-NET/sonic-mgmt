@@ -7,10 +7,14 @@ STR-ACS-SERV-02 ansible_host=10.251.0.1
 [vm_host_3]
 STR-ACS-SERV-03 ansible_host=10.251.0.1
 
+[vm_host_4]
+STR-ACS-SERV-04 ansible_host=10.250.0.1
+
 [vm_host:children]
 vm_host_1
 vm_host_2
 vm_host_3
+vm_host_4
 
 [vms_1]
 VM0100 ansible_host=10.250.0.2
@@ -122,10 +126,18 @@ vms_4
 [server_3:vars]
 host_var_file=host_vars/STR-ACS-SERV-03.yml
 
+[server_4:children]
+vm_host_4
+vms_2
+
+[server_4:vars]
+host_var_file=host_vars/STR-ACS-SERV-04.yml
+
 [servers:children]
 server_1
 server_2
 server_3
+server_4
 
 [servers:vars]
 topologies=['t1', 't1-lag', 't1-64-lag', 't1-slx', 't1-sil', 't0', 't0-16', 't0-56', 't0-52', 't0-slx', 't0-e1031', 't0-sil', 'ptf32', 'ptf64', 't0-64', 't0-64-32', 't0-116']
