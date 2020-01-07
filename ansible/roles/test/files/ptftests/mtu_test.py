@@ -126,7 +126,7 @@ class MtuTest(BaseTest):
         send_packet(self, src_port, pkt)
         logging.info("Sending packet from port " + str(src_port) + " to " + ip_dst)
         dst_port_list = []
-        if self.testbed_type == 't1' or self.testbed_type == 't1-lag' or self.testbed_type == 't1-slx':
+        if self.testbed_type == 't1' or self.testbed_type == 't1-lag' or self.testbed_type == 't1-slx' or self.testbed_type == 't1-sil':
             dst_port_list = [30]
         elif self.testbed_type == 't1-64-lag':
             dst_port_list = [58]

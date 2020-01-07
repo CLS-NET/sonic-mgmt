@@ -1,5 +1,5 @@
 {# defualt route#}
-{% if testbed_type == 't1' or testbed_type == 't1-slx' %}
+{% if testbed_type == 't1' or testbed_type == 't1-slx' or testbed_type == 't1-sil' %}
 0.0.0.0/0 {% for ifname, v in minigraph_neighbors.iteritems() %}
 {% if "T2" in v.name %}{{ '[%d]' % minigraph_port_indices[ifname]}}{% if not loop.last %} {% endif %}{% endif %}{% endfor %}
 
@@ -25,7 +25,7 @@
 {% for podset in range(0, [props.podset_number, 10]|min) %}
 {% for tor in range(0, [props.tor_number, 10]|min) %}
 {% for subnet in range(0, props.tor_subnet_number) %}
-{% if testbed_type == 't1' or testbed_type == 't1-slx' %}
+{% if testbed_type == 't1' or testbed_type == 't1-slx' or testbed_type == 't1-sil' %}
 192.168.{{ podset }}.{{ tor * 16 + subnet }}/32 {% for ifname, v in minigraph_neighbors.iteritems() %}
 {% if "T2" in v.name %}{{ '[%d]' % minigraph_port_indices[ifname]}}{% if not loop.last %} {% endif %}{% endif %}{% endfor %}
 
@@ -81,7 +81,7 @@
 {% endfor %}
 {% endfor %}
 {# routes to downlink #}
-{% if testbed_type == 't1' or testbed_type == 't1-lag' or testbed_type == 't1-slx' %}
+{% if testbed_type == 't1' or testbed_type == 't1-lag' or testbed_type == 't1-slx' or testbed_type == 't1-sil' %}
 {% for ifname, v in minigraph_neighbors.iteritems() %}
 {% if "T0" in v.name %}
 {% for subnet in range(0, props_tor.tor_subnet_number) %}
