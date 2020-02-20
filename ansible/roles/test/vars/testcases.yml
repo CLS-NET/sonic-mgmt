@@ -272,3 +272,7 @@ testcases:
     read_mac:
       filename: read_mac_metadata.yml
       topologies: [t0, t0-slx, t0-e1031, t0-sil, t1, t1-lag, t1-slx, t1-sil]
+
+    cpu_usage:
+      filename: cpu_usage_test.yml
+      topologies: [t1-sil]
