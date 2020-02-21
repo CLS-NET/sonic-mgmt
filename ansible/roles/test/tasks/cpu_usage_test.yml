@@ -10,28 +10,28 @@
 - fail: msg="testbed_type {{testbed_type}} is invalid."
   when: testbed_type not in testcases['cpu_usage']['topologies']
 
-- name: Copy bgp-nei-flap.sh to the Dut.
+- name: Copy bgp_intf_flap.sh to the Dut.
   become: true
   copy:
     src: roles/test/files/helpers/bgp_intf_flap.sh
     dest: /tmp/bgp_intf_flap.sh
     mode: 0777
 
-- name: Copy monitor_cpu.py to the Dut.
+- name: Copy cal_cpu_us.py to the Dut.
   become: true
   copy:
     src: roles/test/files/helpers/cal_cpu_us.py
     dest: /tmp/cal_cpu_us.py
     mode: 0777
 
-- name: Run bgp-nei-flap.sh on Dut.
+- name: Run bgp_intf_flap.sh on Dut.
   become: true
   shell: "nohup /tmp/bgp_intf_flap.sh 22 5 0 15 &"
 
 - name: wait 10 seconds.
   pause: seconds=10
 
-- name: Run monitor_cpu.py on Dut.
+- name: Run cal_cpu_us.py on Dut.
   become: true
   shell: "nohup python /tmp/cal_cpu_us.py -t 90 &"
 
