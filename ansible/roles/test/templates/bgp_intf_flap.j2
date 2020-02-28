@@ -1,0 +1,29 @@
+#!/bin/bash
+{% set n = [0] %}
+{% set interfaces = [] %}
+{% for bn in item.bgp_nb %}
+{% for addr in item.intf_ips if addr == bn['peer_addr']%}
+{% for key, value in item.intf_ls.iteritems() if value.ipv4 is defined and addr == value.ipv4['address'] %}
+{% do interfaces.append(key) %}
+{% do n.append(n.pop() + 1) %}
+{% endfor %}
+{% endfor %}
+{% endfor %}
+{% set hn = n[0]/2 %}
+{% set lp=0 %}
+i=0
+fts={{ item.flap_t }}
+while(( $i < $fts ))
+do
+    let "i++"
+{% for intf in interfaces if lp < hn %}
+    sudo ip link set dev {{ intf }} down
+{% set lp = lp + 1 %}
+{% endfor %}
+    sleep {{ item.intval }}
+{% for intf in interfaces if lp < hn %}
+    sudo ip link set dev {{ intf }} up
+{% set lp = lp + 1 %}
+{% endfor %}
+    sleep {{ item.intval }}
+done

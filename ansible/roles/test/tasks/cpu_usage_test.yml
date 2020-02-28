@@ -10,12 +10,21 @@
 - fail: msg="testbed_type {{testbed_type}} is invalid."
   when: testbed_type not in testcases['cpu_usage']['topologies']
 
-- name: Copy bgp_intf_flap.sh to the Dut.
+- name: Gather minigraph facts about the device
+  minigraph_facts: host={{inventory_hostname}}
+
+- name: Get interface facts
+  interface_facts: up_ports={{minigraph_ports}}
+
+- name: Generate BGP interfaces flap shell file
   become: true
-  copy:
-    src: roles/test/files/helpers/bgp_intf_flap.sh
-    dest: /tmp/bgp_intf_flap.sh
-    mode: 0777
+  template: src=roles/test/templates/bgp_intf_flap.j2 dest=/tmp/bgp_intf_flap.sh mode=0777
+  with_items:
+    - {flap_t: 22,
+       intval: 5,
+       bgp_nb: "{{ minigraph_bgp }}",
+       intf_ips: "{{ ansible_interface_ips['all_ipv4_addresses'] }}",
+       intf_ls: "{{ ansible_interface_facts }}"}
 
 - name: Copy cal_cpu_us.py to the Dut.
   become: true
@@ -26,7 +35,7 @@
 
 - name: Run bgp_intf_flap.sh on Dut.
   become: true
-  shell: "nohup /tmp/bgp_intf_flap.sh 22 5 0 15 &"
+  shell: "nohup /tmp/bgp_intf_flap.sh &"
 
 - name: wait 10 seconds.
   pause: seconds=10
@@ -35,8 +44,8 @@
   become: true
   shell: "nohup python /tmp/cal_cpu_us.py -t 90 &"
 
-- name: wait 150 seconds.
-  pause: seconds=150
+- name: wait 240 seconds.
+  pause: seconds=240
 
 - name: Copy the CPU usage infor to local.
   fetch:

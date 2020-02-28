@@ -275,4 +275,4 @@ testcases:
 
     cpu_usage:
       filename: cpu_usage_test.yml
-      topologies: [t1-slx,t1-sil]
+      topologies: [t0-slx, t0-sil, t1-slx, t1-sil]
