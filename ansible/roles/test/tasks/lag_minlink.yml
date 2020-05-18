@@ -7,7 +7,8 @@
 - block:
     - name: Shut down neighbor interface {{ neighbor_interface }} on {{ peer_device }}
       become: true
-      shell: ip link set {{ neighbor_interface }} down
+      #shell: ip link set {{ neighbor_interface }} down
+      shell: config interface shutdown {{ neighbor_interface }}
       delegate_to: "{{peer_host}}"
       when: ((peer_hwsku | lower) | search("arista")) == False
 
@@ -65,7 +66,8 @@
   always:
     - name: Bring up neighbor interface {{ neighbor_interface }} on {{ peer_host }}
       become: true
-      shell: ip link set {{ neighbor_interface }} up
+      #shell: ip link set {{ neighbor_interface }} up
+      shell: config interface startup {{ neighbor_interface }}
       delegate_to: "{{peer_host}}"
       when: ((peer_hwsku | lower) | search("arista")) == False
 

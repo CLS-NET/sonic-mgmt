@@ -34,6 +34,13 @@ cel-seastone-01 ansible_host=10.251.0.100
 hwsku="Celestica-DX010-C32"
 iface_speed='100000'
 
+[sonic_slx2]
+cel-seastone2-01 ansible_host=10.251.0.100
+
+[sonic_slx2:vars]
+hwsku="Seastone_2"
+iface_speed='100000'
+
 [sonic_e1031]
 cel-e1031-01 ansible_host=10.250.0.100
 
@@ -54,6 +61,7 @@ sonic_s6000
 sonic_s6100
 sonic_a7260
 sonic_slx
+sonic_slx2
 sonic_e1031
 sonic_sil
 

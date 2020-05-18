@@ -11,3 +11,4 @@ e1031-fanout,10.250.0.235/23,Celestica-E1031-T48S4,FanoutLeafSonic
 cel-e1031-01,10.250.0.100/23,Celestica-E1031-T48S4,DevSonic
 silverstone-fanout,10.250.0.235/23,Silverstone,FanoutLeafSonic
 cel-silverstone-01,10.250.0.100/23,Silverstone,DevSonic
+cel-seastone2-01,10.251.0.100/23,Seastone_2,DevSonic
